@@ -7,7 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var url = "mongodb://localhost:27017/onlineshopping";
+//var url = "mongodb://localhost:27017/onlineshopping"; // local DATABASE
+var url = "mongodb+srv://akshay:makkar11@cluster0-rogcg.mongodb.net/test?retryWrites=true&w=majority"; //LIVE DATABASE
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 // Connecting to the database
