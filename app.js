@@ -7,6 +7,23 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var url = "mongodb://localhost:27017/onlineshopping";
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+// Connecting to the database
+mongoose
+  .connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Successfully connected to the database");
+  })
+  .catch(err => {
+    console.log("Could not connect to the database. Exiting now...", err);
+    process.exit();
+  });
+
 var app = express();
 
 // view engine setup
