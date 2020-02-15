@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var usersRouter = require('./routes/users.routes');
+var indexRouter = require('./routes/index.route');
 
 //var url = "mongodb://localhost:27017/onlineshopping"; // local DATABASE
 var url = "mongodb+srv://akshay:makkar11@cluster0-rogcg.mongodb.net/test?retryWrites=true&w=majority"; //LIVE DATABASE
@@ -36,6 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/',indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

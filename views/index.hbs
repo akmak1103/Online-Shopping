@@ -1,2 +1,26 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Welcome to {{title}} Mr.{{name}}</p>
+
+Email: <input type="email" id="email">
+Password: <input type="password" id="password">
+
+<div>
+    <button onclick="login()">Login</button>
+</div>
+
+<div>
+    <button>SignUp</button>
+</div>
+
+<script>
+    function login()
+    {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            
+        }
+    }
+</script>
