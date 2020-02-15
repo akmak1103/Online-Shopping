@@ -33,7 +33,7 @@ exports.signin = async (req, res) => {
       var token = new Token ({userID: user._id});
       token = await token.save ();
       res.header ('authorization', token._id);
-      res.status(200).send('Signed In...');
+      res.status(200).send(user);
     } else {
       res.status().send ('Password does not match !!');
     }
