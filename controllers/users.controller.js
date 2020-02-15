@@ -25,17 +25,17 @@ exports.signup = async (req, res) => {
 };
 
 exports.signin = async (req, res) => {
-  var existing = await User.findOne ({email: req.body.email});
-  if (existing == null) {
+  var user = await User.findOne ({email: req.body.email});
+  if (user == null || user == undefined) {
     res.send ('User does not exist. Please SIGN UP');
   } else {
-    if (passwordHash.verify (req.body.password, existing.password)) {
+    if (passwordHash.verify (req.body.password, user.password)) {
       var token = new Token ({userID: user._id});
       token = await token.save ();
-      res.header ('Authorization', token._id);
-      res.send ('Signed In...');
+      res.header ('authorization', token._id);
+      res.status(200).send('Signed In...');
     } else {
-      res.send ('Password does not match !!');
+      res.status().send ('Password does not match !!');
     }
   }
 };
@@ -56,9 +56,10 @@ exports.signoutall = async (req, res) => {
 
 exports.retrieveuser = async (req, res) => {
   // Send user associated with userId
-  var user = await User.findById(req.token.userId);
+  var user = await User.findById(req.token.userID);
   if (!user) {
     res.status(404).send({ message: "User not found" });
   }
+  else
   res.status(200).send(user);
 };
